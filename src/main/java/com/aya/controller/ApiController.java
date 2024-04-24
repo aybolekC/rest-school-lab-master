@@ -18,6 +18,8 @@ import java.util.List;
 @RestController
 public class ApiController {
 
+
+
     private final TeacherService teacherService;
     private final StudentService studentService;
     private final ParentService parentService;
@@ -61,6 +63,8 @@ public class ApiController {
 
         AddressDTO addressToReturn=addressService.findById(id);
 
+        addressToReturn.setCurrentTemperature(addressService.getCurrentWeather(addressToReturn.getCity()).getCurrent().getTemperature());
+
         return ResponseEntity.ok(new ResponseWrapper("Address is successfully retrieved",addressToReturn));
 
     }
@@ -72,6 +76,9 @@ public class ApiController {
         addressDTO.setId(id);
 
         AddressDTO addressToReturn=addressService.update(addressDTO);
+
+        addressToReturn.setCurrentTemperature(addressService.getCurrentWeather(addressToReturn.getCity()).getCurrent().getTemperature());
+
 
         return addressToReturn;
     }

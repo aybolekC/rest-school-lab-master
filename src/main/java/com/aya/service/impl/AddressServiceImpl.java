@@ -1,6 +1,7 @@
 package com.aya.service.impl;
 
 
+import com.aya.client.WeatherApiClient;
 import com.aya.dto.AddressDTO;
 import com.aya.dto.WeatherDTO;
 import com.aya.entity.Address;
@@ -19,15 +20,16 @@ public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
     private final MapperUtil mapperUtil;
-   // private final WeatherApiClient weatherApiClient;
+    private final WeatherApiClient weatherApiClient;
 
     @Value("${access_key}")
     private String accessKey;
 
-    public AddressServiceImpl(AddressRepository addressRepository, MapperUtil mapperUtil) {
+
+    public AddressServiceImpl(AddressRepository addressRepository, MapperUtil mapperUtil, WeatherApiClient weatherApiClient) {
         this.addressRepository = addressRepository;
         this.mapperUtil = mapperUtil;
-
+        this.weatherApiClient = weatherApiClient;
     }
 
     @Override
@@ -77,11 +79,9 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
-//    @Override
-//    public WeatherDTO getCurrentWeather(String city) {
-//
-////        return weatherApiClient.getCurrentWeather(accessKey, city);
-//        return null;
-//    }
+    @Override
+    public WeatherDTO getCurrentWeather(String city) {
+        return weatherApiClient.getCurrentWeather(accessKey,city);
+    }
 
 }

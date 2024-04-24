@@ -15,6 +15,6 @@ public interface AddressService {
 
     AddressDTO create(AddressDTO addressDTO) throws Exception;
 
-//    WeatherDTO getCurrentWeather(String city);
+    WeatherDTO getCurrentWeather(String city);
 
 }
