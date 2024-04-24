@@ -34,6 +34,7 @@ public class StudentDTO {
 
     private Status status;
 
+    @JsonBackReference(value = "address-reference")
     private AddressDTO address;
 
     private ParentDTO parent;
